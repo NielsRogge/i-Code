@@ -378,6 +378,7 @@ class T52dStack(T5PreTrainedModel):
                 print("Shape of hidden states:", hidden_states.shape)
                 print(f"Hidden states before layer {i}:", hidden_states[0,:3,:3])
                 print("Mean of attention mask:", extended_attention_mask.float().mean())
+                print("Mean of position_bias:", position_bias.mean())
 
                 # from huggingface_hub import HfApi
                 # api = HfApi()
