@@ -595,6 +595,7 @@ class UdopUnimodelForConditionalGeneration(T5ForConditionalGeneration):
         )
 
         print("Shape of logits:", outputs.logits.shape)
+        print("First values of logits:", outputs.logits[0, :3, :3])
 
         return outputs  # type: ignore
     
