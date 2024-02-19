@@ -211,6 +211,7 @@ class T52dStack(T5PreTrainedModel):
 
             
         # get weights from encoder position bias
+        print("Setting the relative bias...")
         self.relative_bias = self._get_relative_bias(config)
 
         # tie weights of original position bias of encoder
