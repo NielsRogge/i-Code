@@ -371,36 +371,37 @@ class T52dStack(T5PreTrainedModel):
                 all_hidden_states = all_hidden_states + (hidden_states,)
 
             if i == 0 and not self.is_decoder:
+                print("Shape of hidden states:", hidden_states.shape)
                 print(f"Hidden states before layer {i}:", hidden_states[0,:3,:3])
                 print("Mean of attention mask:", extended_attention_mask.float().mean())
 
-                from huggingface_hub import HfApi
-                api = HfApi()
+                # from huggingface_hub import HfApi
+                # api = HfApi()
 
-                torch.save(hidden_states, "hidden_states_udop.pt")
-                torch.save(extended_attention_mask, "extended_attention_mask_udop.pt")
-                torch.save(position_bias, "position_bias_udop.pt")
+                # torch.save(hidden_states, "hidden_states_udop.pt")
+                # torch.save(extended_attention_mask, "extended_attention_mask_udop.pt")
+                # torch.save(position_bias, "position_bias_udop.pt")
 
-                api.upload_file(
-                    path_or_fileobj="hidden_states_udop.pt",
-                    path_in_repo="hidden_states_udop.pt",
-                    repo_id="nielsr/test-image",
-                    repo_type="dataset",
-                )
+                # api.upload_file(
+                #     path_or_fileobj="hidden_states_udop.pt",
+                #     path_in_repo="hidden_states_udop.pt",
+                #     repo_id="nielsr/test-image",
+                #     repo_type="dataset",
+                # )
 
-                api.upload_file(
-                    path_or_fileobj="extended_attention_mask_udop.pt",
-                    path_in_repo="extended_attention_mask_udop.pt",
-                    repo_id="nielsr/test-image",
-                    repo_type="dataset",
-                )
+                # api.upload_file(
+                #     path_or_fileobj="extended_attention_mask_udop.pt",
+                #     path_in_repo="extended_attention_mask_udop.pt",
+                #     repo_id="nielsr/test-image",
+                #     repo_type="dataset",
+                # )
 
-                api.upload_file(
-                    path_or_fileobj="position_bias_udop.pt",
-                    path_in_repo="position_bias_udop.pt",
-                    repo_id="nielsr/test-image",
-                    repo_type="dataset",
-                )
+                # api.upload_file(
+                #     path_or_fileobj="position_bias_udop.pt",
+                #     path_in_repo="position_bias_udop.pt",
+                #     repo_id="nielsr/test-image",
+                #     repo_type="dataset",
+                # )
 
             layer_outputs = layer_module(
                 hidden_states,
