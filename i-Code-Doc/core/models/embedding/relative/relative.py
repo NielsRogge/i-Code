@@ -241,4 +241,6 @@ def create_relative_bias(config: Union[UdopConfig, T5Config]) -> Sequence[Relati
                 bias_kwargs["num_heads"] = model_num_heads
             bias_list.append(BIAS_CLASSES[bias_type](**bias_kwargs))  # type: ignore
 
+    print("Bias list:", bias_list)
+
     return bias_list
