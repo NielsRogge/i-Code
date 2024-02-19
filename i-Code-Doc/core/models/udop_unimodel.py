@@ -351,10 +351,13 @@ class T52dStack(T5PreTrainedModel):
         if self.is_decoder:  # modified lines
             position_bias = None
         else:
+            print("Shape of attention mask:", extended_attention_mask.shape)
+            print("Shape of seg_data:", seg_data.shape)
             position_bias = self.relative_bias(
                     attention_mask=attention_mask, seg_data=seg_data
                 )
             position_bias = position_bias + extended_attention_mask
+            print("Shape of position_bias:", position_bias.shape)
         encoder_decoder_position_bias = None
 
         

@@ -227,6 +227,7 @@ def create_relative_bias(config: Union[UdopConfig, T5Config]) -> Sequence[Relati
     """
     bias_list = []
     if hasattr(config, "relative_bias_args"):
+        print("Relative bias arguments:", config.relative_bias_args)
         assert isinstance(config.relative_bias_args, list)
         for bias_kwargs_org in config.relative_bias_args:
             bias_kwargs = deepcopy(bias_kwargs_org)
