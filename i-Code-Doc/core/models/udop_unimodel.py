@@ -375,6 +375,7 @@ class T52dStack(T5PreTrainedModel):
             
             print("Shape of attention mask:", attention_mask.shape)
             print("Shape of seg_data:", seg_data.shape)
+            print("Type of seg_data:", seg_data.dtype)
             position_bias = self.relative_bias(
                     attention_mask=attention_mask, seg_data=seg_data
                 )
