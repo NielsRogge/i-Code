@@ -41,6 +41,7 @@ def collate_vlembed(inputs_patches, inputs_embeds, seg_data, visual_segdata, vis
     ocr_points_x = torch.clip(torch.floor((seg_data[:, :, 0]+seg_data[:, :, 2])/2.0 * L).long(), 0, L-1)
     ocr_points_y = torch.clip(torch.floor((seg_data[:, :, 1]+seg_data[:, :, 3])/2.0 * L).long(), 0, L-1) * L
     ocr_points = ocr_points_x + ocr_points_y
+    print("Dtype of seg_data:", seg_data.dtype)
     target_seg = (seg_data.mean(-1) == 0.0) | (seg_data.mean(-1) == 1.0)
     repeated_vision_embeds = torch.gather(inputs_patches, 1, ocr_points.unsqueeze(-1).repeat(1, 1, inputs_patches.size(-1)))
     repeated_vision_embeds[target_seg] = 0.0
