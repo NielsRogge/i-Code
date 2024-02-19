@@ -352,7 +352,28 @@ class T52dStack(T5PreTrainedModel):
         if self.is_decoder:  # modified lines
             position_bias = None
         else:
-            print("Shape of attention mask:", extended_attention_mask.shape)
+            from huggingface_hub import HfApi
+            
+            api = HfApi()
+
+            torch.save(attention_mask, "attention_mask_udop.pt")
+            torch.save(seg_data, "seg_data_udop.pt")
+
+            api.upload_file(
+                path_or_fileobj="seg_data_udop.pt",
+                path_in_repo="seg_data_udop.pt",
+                repo_id="nielsr/test-image",
+                repo_type="dataset",
+            )
+
+            api.upload_file(
+                path_or_fileobj="attention_mask_udop.pt",
+                path_in_repo="attention_mask_udop.pt",
+                repo_id="nielsr/test-image",
+                repo_type="dataset",
+            )
+            
+            print("Shape of attention mask:", attention_mask.shape)
             print("Shape of seg_data:", seg_data.shape)
             position_bias = self.relative_bias(
                     attention_mask=attention_mask, seg_data=seg_data
