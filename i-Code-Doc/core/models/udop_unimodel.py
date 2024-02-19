@@ -370,6 +370,8 @@ class T52dStack(T5PreTrainedModel):
             if output_hidden_states:
                 all_hidden_states = all_hidden_states + (hidden_states,)
 
+            print("Hidden states before layer {i}:", hidden_states[0,:3,:3])
+
             layer_outputs = layer_module(
                 hidden_states,
                 attention_mask=extended_attention_mask,
