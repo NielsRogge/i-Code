@@ -594,6 +594,8 @@ class UdopUnimodelForConditionalGeneration(T5ForConditionalGeneration):
             return_dict=return_dict,
         )
 
+        print("Shape of logits:", outputs.logits.shape)
+
         return outputs  # type: ignore
     
     def get_encoder(self):
